@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:reg="http://www.dangdang.com/schema/ddframe/reg"
+       xmlns:job="http://www.dangdang.com/schema/ddframe/job"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+	http://www.dangdang.com/schema/ddframe/reg
+    http://www.dangdang.com/schema/ddframe/reg/reg.xsd
+    http://www.dangdang.com/schema/ddframe/job
+    http://www.dangdang.com/schema/ddframe/job/job.xsd ">
+
+
+    <reg:zookeeper id="regCenter"
+                   server-lists="${serverLists}"
+                   namespace="${namespace}"
+                   base-sleep-time-milliseconds="${baseSleepTimeMilliseconds}"
+                   max-sleep-time-milliseconds="${maxSleepTimeMilliseconds}"
+                   max-retries="${maxRetries}"/>
+    <job:simple id="simpleTest2"
+                class="com.yryz.common.job.SimpleJobTest"
+                registry-center-ref="regCenter"
+                disabled="false" 
+                overwrite="true" 
+                sharding-total-count="1"
+                cron="0 0 */5 * * ?"
+                sharding-item-parameters="0=A"
+                monitor-execution="false"
+                failover="false"
+                description="定时任务simpleTest"
+                monitor-port="9888"/>
+
+</beans>

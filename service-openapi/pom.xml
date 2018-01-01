@@ -1,0 +1,74 @@
+<?xml version="1.0"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.jzc.spring</groupId>
+        <artifactId>j-dubbo</artifactId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+  <artifactId>service-openapi</artifactId>
+  <packaging>war</packaging>
+  <name>service-openapi Maven Webapp</name>
+  <url>http://maven.apache.org</url>
+
+  <dependencies>
+
+  	<dependency>
+  	  <groupId>com.jzc.spring</groupId>
+  	  <artifactId>service-common</artifactId>
+  	  <version>${project.version}</version>
+  	</dependency>
+
+      <dependency>
+          <groupId>com.jzc.spring</groupId>
+          <artifactId>service-feeds-api</artifactId>
+          <version>${project.version}</version>
+      </dependency>
+
+      <dependency>
+          <groupId>junit</groupId>
+          <artifactId>junit</artifactId>
+          <scope>test</scope>
+      </dependency>
+
+      <!-- servlet、jsp setting -->
+      <dependency>
+          <groupId>javax.servlet</groupId>
+          <artifactId>servlet-api</artifactId>
+          <scope>provided</scope>
+      </dependency>
+      <dependency>
+          <groupId>org.aspectj</groupId>
+          <artifactId>aspectjrt</artifactId>
+          <version>1.6.11</version>
+      </dependency>
+
+      <dependency>
+          <groupId>org.aspectj</groupId>
+          <artifactId>aspectjweaver</artifactId>
+          <version>1.6.11</version>
+      </dependency>
+
+      <dependency>
+          <groupId>com.fasterxml.jackson.core</groupId>
+          <artifactId>jackson-annotations</artifactId>
+          <version>${fastjackson.version}</version>
+      </dependency>
+
+      <dependency>
+          <groupId>com.fasterxml.jackson.core</groupId>
+          <artifactId>jackson-databind</artifactId>
+          <version>${fastjackson.version}</version>
+      </dependency>
+
+  </dependencies>
+  
+  <properties>
+	<jetty.version>6.1.26</jetty.version>
+	<cat.version>1.4.0</cat.version>
+  </properties>
+  <build>
+    <finalName>service-openapi</finalName>
+  </build>
+</project>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:rabbit="http://www.springframework.org/schema/rabbit"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+    http://www.springframework.org/schema/rabbit
+    http://www.springframework.org/schema/rabbit/spring-rabbit-1.4.xsd">
+
+
+    <!-- Rabbit MQ -->
+    <!-- 定义rabbitMQ的连接 -->
+    <rabbit:connection-factory id="connectionFactory"
+                               host="${rabbitmq.ip}"
+                               port="${rabbitmq.port}"
+                               virtual-host="${rabbitmq.virtual-host}"
+                               username="${rabbitmq.username}"
+                               password="${rabbitmq.password}"
+                               channel-cache-size="${rabbitmq.channel-cache-size}"/>
+
+    <!-- 定义一个管理连接 -->
+    <rabbit:admin connection-factory="connectionFactory"
+                  auto-startup="true"/>
+
+    <!-- queue: 定义会话服务队列 -->
+    <rabbit:queue id="feeds.queue" name="feeds.queue"
+                  auto-declare="true" durable="true" auto-delete="false" exclusive="false"></rabbit:queue>
+
+    <!-- listener: 消息监听者 -->
+    <bean id="feedsListener"
+          class="com.jzc.spring.dubbo.module.feeds.mq.FeedsListener"></bean>
+
+    <!-- listener: 注册消息监听者 -->
+    <rabbit:listener-container
+            connection-factory="connectionFactory">
+        <rabbit:listener ref="feedsListener" queues="feeds.queue"/>
+    </rabbit:listener-container>
+
+    <!-- exchange: 直连交换机 -->
+    <rabbit:direct-exchange name="feeds.direct"
+                            id="feeds.direct" auto-declare="true" durable="true">
+        <rabbit:bindings>
+            <rabbit:binding queue="feeds.queue" key="feeds.queue"></rabbit:binding>
+        </rabbit:bindings>
+    </rabbit:direct-exchange>
+
+    <!-- template: rabbit发送至session模板信息类 -->
+    <rabbit:template id="directTemplate"
+                     connection-factory="connectionFactory"
+                     exchange="feeds.direct"
+                     reply-timeout="10000"/>
+
+</beans>
