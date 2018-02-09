@@ -19,4 +19,10 @@
                      check="false"
                      timeout="30000"/>
 
+    <!-- hello -->
+    <dubbo:reference id="helloApi"
+                     interface="com.jzc.spring.dubbo.module.release.HelloEsApi" registry="hwq"
+                     check="false"
+                     timeout="30000"/>
+
 </beans>
