@@ -5,7 +5,6 @@ import com.jzc.spring.dubbo.module.release.constant.ReleaseConstant;
 import com.jzc.spring.dubbo.module.release.dto.SearchDto;
 import com.jzc.spring.dubbo.module.release.es.EsClient;
 import com.jzc.spring.dubbo.module.release.service.ReleaseService;
-import com.jzc.spring.dubbo.web.ResponseModel;
 import org.apache.commons.lang3.StringUtils;
 import org.elasticsearch.index.query.BoolQueryBuilder;
 import org.elasticsearch.index.query.QueryBuilder;
