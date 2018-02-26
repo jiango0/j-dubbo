@@ -25,4 +25,10 @@
                      check="false"
                      timeout="30000"/>
 
+    <!-- release -->
+    <dubbo:reference id="releaseApi"
+                     interface="com.jzc.spring.dubbo.module.release.ReleaseApi" registry="hwq"
+                     check="false"
+                     timeout="30000"/>
+
 </beans>

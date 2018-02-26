@@ -13,4 +13,6 @@
 
         <dubbo:service interface="com.jzc.spring.dubbo.module.release.HelloEsApi" ref="helloEsProvider" />
 
+    <dubbo:service interface="com.jzc.spring.dubbo.module.release.ReleaseApi" ref="releaseProvider" />
+
 </beans>
